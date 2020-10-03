@@ -34,9 +34,12 @@ func FCFS(processes []*Process) {
 		// Tempo total eh somado ao burstTime (tempo de execucao em CPU)
 		completionTime += p.burstTime
 		// Turn Around Time eh a diferenca entre o tempo de conclusao do processo (completionTime)
-		// e o instante o processo chegou
+		// e o instante o processo chegou, ou seja, eh o tempo decorrido entre o momento
+		// que o processo entra na fila de `ready` ate o momento que finaliza sua completa
+		// execucao
 		p.turnAroundTime = completionTime - p.arrivalTime
-		// Tempo efetivo de espera, que eh a diferenca entre o
+		// Tempo efetivo de espera do processo desde o momento que entrou na fila de
+		// `ready` ate o momento que o processo sera executado na CPU
 		p.waitingTime = p.turnAroundTime - p.burstTime
 
 		fmt.Printf("Processo %d\tCMPT %d\tTAT %d\tWT %d\n", p.pid, completionTime, p.turnAroundTime, p.waitingTime)
