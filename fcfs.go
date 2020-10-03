@@ -10,7 +10,7 @@ import (
 // de acordo com sua ordem de chegada na fila de `ready`
 func FCFS(processes []*Process) {
 	// Tempo total de execucao dos processos
-	totalTime := 0
+	completionTime := 0
 
 	// Ordena os processos de acordo com arrivalTime
 	sort.Slice(processes, func(a, b int) bool {
@@ -27,24 +27,22 @@ func FCFS(processes []*Process) {
 		// de execucao ate o momento, significa que a CPU
 		// ficou IDLE. O tempo que a CPU fica IDLE eh somado
 		// ao tempo total de execucao
-		if p.arrivalTime > totalTime {
-			totalTime += p.arrivalTime - totalTime
+		if p.arrivalTime > completionTime {
+			completionTime += p.arrivalTime - completionTime
 		}
 
 		// Tempo total eh somado ao burstTime (tempo de execucao em CPU)
-		totalTime += p.burstTime
-		// Turn Around Time eh o tempo de conclusao do processo (totalTime)
-		// menos em qual instante o processo chegou
-		p.turnAroundTime = totalTime - p.arrivalTime
+		completionTime += p.burstTime
+		// Turn Around Time eh a diferenca entre o tempo de conclusao do processo (completionTime)
+		// e o instante o processo chegou
+		p.turnAroundTime = completionTime - p.arrivalTime
 		// Tempo efetivo de espera, que eh a diferenca entre o
 		p.waitingTime = p.turnAroundTime - p.burstTime
-
-		completionTime := p.turnAroundTime + p.arrivalTime
 
 		fmt.Printf("Processo %d\tCMPT %d\tTAT %d\tWT %d\n", p.pid, completionTime, p.turnAroundTime, p.waitingTime)
 	}
 
-	fmt.Printf("Tempo total: %d\n", totalTime)
+	fmt.Printf("Tempo total: %d\n", completionTime)
 	fmt.Printf("Tempo medio TA: %f\n", AvgTurnAroundTime(processes))
 	fmt.Printf("Tempo medio WT: %f\n", AvgWaitingTime(processes))
 }
