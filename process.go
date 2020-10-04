@@ -17,9 +17,10 @@ type Process struct {
 	isFinished bool
 	// Tempo de execucao do processo em CPU
 	timeExecuted int
-	//
+	// Valor de `deadline` utilizado no algoritmo EDF
 	deadline int
-	period   int
+	// Periodo utilizado pelo processo para o algoritmo de EDF
+	period int
 }
 
 func newProcess(pid, arrivalTime, burstTime int) *Process {
