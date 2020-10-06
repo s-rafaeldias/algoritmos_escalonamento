@@ -19,7 +19,7 @@ func main() {
 	p3 = newProcess(3, 3, 6)
 	p4 = newProcess(4, 8, 5)
 	processes = []*Process{p1, p2, p3, p4}
-	// SJF(processes)
+	SJF(processes)
 
 	p1 = newProcessEDF(0, 3, 7, 20)
 	p2 = newProcessEDF(1, 2, 4, 5)
@@ -31,7 +31,7 @@ func main() {
 	p2 = newProcess(2, 2, 4)
 	p3 = newProcess(3, 3, 6)
 	processes = []*Process{p1, p2, p3}
-	RoundRobin(processes, 1)
+	// RoundRobin(processes, 1)
 }
 
 func AvgTurnAroundTime(processes []*Process) float64 {

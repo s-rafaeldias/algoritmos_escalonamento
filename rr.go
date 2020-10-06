@@ -30,7 +30,6 @@ func RoundRobin(processes []*Process, quantum int) {
 	// Flag com a quantidade de processos finalizados
 	finishedJobs := 0
 
-ClockLoop:
 	for {
 		for i, p := range runtimeProcesses {
 			// Caso o processo ja esteja finalizado, basta
@@ -67,7 +66,7 @@ ClockLoop:
 		}
 		// Todos os processos foram finalizados
 		if finishedJobs == len(processes) {
-			break ClockLoop
+			break
 		}
 	}
 
