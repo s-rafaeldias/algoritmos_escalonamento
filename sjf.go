@@ -11,7 +11,7 @@ import (
 // SJF eh o algoritmo Shortest Job First, onde o processo com o menor
 // tempo de execucao restante eh alocado no CPU. Nessa versao, a implementacao
 // usa uma abordagem preemptiva, ou seja, o escalonador consegue desalocar um
-// processo
+// processo da CPU para colocar outro com menor `burstTime` restante.
 func SJF(processes []*Process) {
 	// Ordena os processos em ordem de chegada
 	sort.Slice(processes, func(a, b int) bool {
