@@ -1,3 +1,6 @@
+// Rafael Dias Silveira
+// RA 21908018
+// rafael.silveira@sempreceub.com
 package main
 
 import "fmt"
